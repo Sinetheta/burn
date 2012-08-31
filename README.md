@@ -16,63 +16,63 @@ The horizontal movement of the flame is simulated by a [plane traveling wave](ht
 Options
 ---
 
-`var options = {
-	//Amplitude
-    a : .3,
-    //Wave Number
-    k : .05,
-    //Angular Frequency
-    w : 10,
-    //Skew
-    wind: 1,
-    //Animation speed
-    interval: 100,
-    //Each of these objects represents a shadow
-    flames : [{
-    		//Start displacement
-            x: 0,
-            //Color of the shadow
-            hsla: [58, 96, 89, 1],
-            //height above the letter
-            y: 0,
-            //Size/clarity of the shadow
-            blur: 20
-        },
-        {
-            x: 0,
-            hsla: [51, 98, 76, 1],
-            y: 5,
-            blur: 30
-        },
-        {
-            x: 0,
-            hsla: [36, 100, 60, 1],
-            y: 10,
-            blur: 40
-        },
-        {
-            x: 0,
-            hsla: [28, 91, 49, 1],
-            y: 20,
-            blur: 50
-        },
-        {
-            x: 0,
-            hsla: [19, 94, 41, 1],
-            y: 30,
-            blur: 60
-        },
-        {
-            x: 0,
-            hsla: [15, 75, 34, 1],
-            y: 40,
-            blur: 70
-        },
-        {
-            x: 0,
-            hsla: [14, 66, 16, 1],
-            y: 50,
-            blur: 80
-    }]
-};
-$(target).burn({options});`
+	var options = {
+		//Amplitude
+	    a : .3,
+	    //Wave Number
+	    k : .05,
+	    //Angular Frequency
+	    w : 10,
+	    //Skew
+	    wind: 1,
+	    //Animation speed
+	    interval: 100,
+	    //Each of these objects represents a shadow
+	    flames : [{
+	    		//Start displacement
+	            x: 0,
+	            //Color of the shadow
+	            hsla: [58, 96, 89, 1],
+	            //height above the letter
+	            y: 0,
+	            //Size/clarity of the shadow
+	            blur: 20
+	        },
+	        {
+	            x: 0,
+	            hsla: [51, 98, 76, 1],
+	            y: 5,
+	            blur: 30
+	        },
+	        {
+	            x: 0,
+	            hsla: [36, 100, 60, 1],
+	            y: 10,
+	            blur: 40
+	        },
+	        {
+	            x: 0,
+	            hsla: [28, 91, 49, 1],
+	            y: 20,
+	            blur: 50
+	        },
+	        {
+	            x: 0,
+	            hsla: [19, 94, 41, 1],
+	            y: 30,
+	            blur: 60
+	        },
+	        {
+	            x: 0,
+	            hsla: [15, 75, 34, 1],
+	            y: 40,
+	            blur: 70
+	        },
+	        {
+	            x: 0,
+	            hsla: [14, 66, 16, 1],
+	            y: 50,
+	            blur: 80
+	    }]
+	};
+	$(target).burn({options});
