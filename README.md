@@ -8,6 +8,8 @@ Usage
 
 `$(target).burn();`
 
+[Example](http://jsfiddle.net/sinetheta/sbfMY/)
+
 Wave Equation
 ---
 
