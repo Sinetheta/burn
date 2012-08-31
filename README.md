@@ -6,13 +6,13 @@ jQuery Burn applies a simple flame effect to text using the css text-shadow prop
 Usage
 ---
 
-<script>
-(function(){
-	$(document).ready(function() {
-		$(target).burn();
-	});
-})(jQuery);
-</script>
+	<script>
+	(function(){
+		$(document).ready(function() {
+			$(target).burn();
+		});
+	})(jQuery);
+	</script>
 
 [Example](http://jsfiddle.net/sinetheta/sbfMY/)
 
