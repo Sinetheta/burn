@@ -6,14 +6,6 @@
  * http://jquery.org/license
  *
  */
-/*!
- * jQuery Burn - v0.1 - 8/31/2012
- *
- * Copyright (c) 2012 Kevin Attfield
- * Dual licensed under the MIT and GPL licenses.
- * http://jquery.org/license
- *
- */
 (function($)
 {
     var defaultSettings = {
@@ -72,7 +64,7 @@
         if( option === false) {
             var self = this.data('_burn')
 
-            self.off();
+            self && self.off();
             return this
 
         } else if(typeof option === 'object') {
