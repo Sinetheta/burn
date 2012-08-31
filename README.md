@@ -16,6 +16,8 @@ Usage
 
 [Example](http://jsfiddle.net/sinetheta/sbfMY/)
 
+To turn off effect `$(target).burn(false);`
+
 Wave Equation
 ---
 

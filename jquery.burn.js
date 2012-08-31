@@ -6,6 +6,14 @@
  * http://jquery.org/license
  *
  */
+/*!
+ * jQuery Burn - v0.1 - 8/31/2012
+ *
+ * Copyright (c) 2012 Kevin Attfield
+ * Dual licensed under the MIT and GPL licenses.
+ * http://jquery.org/license
+ *
+ */
 (function($)
 {
     var defaultSettings = {
@@ -61,7 +69,13 @@
     $.fn.burn = function(option, settings) {
 
         // check if user is setting/getting properties manually after plugin creation
-        if(typeof option === 'object') {
+        if( option === false) {
+            var self = this.data('_burn')
+
+            self.off();
+            return this
+
+        } else if(typeof option === 'object') {
 
             settings = option;
 
@@ -129,6 +143,7 @@
             // return the target in case its already been defined for the current element 
             if(self.burning) return self.burning;
 
+            self.oldShadow = self.elem.css('text-shadow');
             self.interval = setInterval(function(){
                 self.burn();
             }, op.interval);
@@ -153,6 +168,12 @@
             });
 
             self.elem.css('text-shadow', shadow.join(', '));
+        },
+
+        off: function(){
+            window.clearInterval(this.interval);
+            this.interval = null;
+            this.elem.css('text-shadow', this.oldShadow);
         }
     };
 })(jQuery);
