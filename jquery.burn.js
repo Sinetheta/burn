@@ -1,9 +1,9 @@
 /*!
- * jQuery Burn - v0.1 - 8/31/2012
+ * jQuery Burn - v0.2 - 9/30/2012
  *
  * Copyright (c) 2012 Kevin Attfield
  * Dual licensed under the MIT and GPL licenses.
- * http://jquery.org/license
+ * http://sinetheta.github.com/burn/
  *
  */
 (function($)
@@ -18,43 +18,43 @@
                 x: 0,
                 hsla: [58, 96, 89, 1],
                 y: 0,
-                blur: 20
+                blur: .1
             },
             {
                 x: 0,
                 hsla: [51, 98, 76, 1],
-                y: 5,
-                blur: 30
+                y: .02,
+                blur: .15
             },
             {
                 x: 0,
                 hsla: [36, 100, 60, 1],
-                y: 10,
-                blur: 40
+                y: .04,
+                blur: .2
             },
             {
                 x: 0,
                 hsla: [28, 91, 49, 1],
-                y: 20,
-                blur: 50
+                y: .08,
+                blur: .25
             },
             {
                 x: 0,
                 hsla: [19, 94, 41, 1],
-                y: 30,
-                blur: 60
+                y: .15,
+                blur: .3
             },
             {
                 x: 0,
                 hsla: [15, 75, 34, 1],
-                y: 40,
-                blur: 70
+                y: .2,
+                blur: .4
             },
             {
                 x: 0,
                 hsla: [14, 66, 16, 1],
-                y: 50,
-                blur: 80
+                y: .5,
+                blur: .5
         }]
     };
 
@@ -156,7 +156,7 @@
                 var rise = -flame.y;
                 var intensity = Math.sqrt(Math.random());
                 flame.x = self.wave(flame.y, self.t, intensity);
-                return (flame.x + op.wind)*flame.y + 'px ' + rise + 'px ' + flame.blur + 'px hsla(' + flame.hsla[0] + ', ' + flame.hsla[1] + '%, ' + flame.hsla[2] + '%, ' + flame.hsla[3] + ')';
+                return (flame.x + op.wind)*flame.y + 'em ' + rise + 'em ' + flame.blur + 'em hsla(' + flame.hsla[0] + ', ' + flame.hsla[1] + '%, ' + flame.hsla[2] + '%, ' + flame.hsla[3] + ')';
             });
 
             self.elem.css('text-shadow', shadow.join(', '));
