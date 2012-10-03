@@ -1,1 +1,320 @@
-My GitHub Page
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Burn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A jquery plugin to add a burning effect to text">
+    <meta name="author" content="Kevin Attfield">
+
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="assets/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Page Header
+    ================================================== -->
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1 class="burning">jQuery Burn</h1>
+        <p class="lead">Some men just want to watch the text burn!</p>
+      </div>
+    </header>
+    <div class="container">
+
+      <!-- Page Left Navigation
+      ================================================== -->
+      <div class="row">
+        <div class="span3 left-sidebar">
+          <ul class="nav nav-list left-sidenav span3" data-spy="affix" data-offset-top="220">
+            <li><a href="#usage"><i class="icon-chevron-right"></i> Usage</a></li>
+            <li><a href="#documentation"><i class="icon-chevron-right"></i> Documentation</a></li>
+            <li><a href="#advanced-usage"><i class="icon-chevron-right"></i> Advanced Usage</a></li>
+            <li><a href="#wave-equation"><i class="icon-chevron-right"></i> Wave Equation</a></li>
+            <li><a href="#contribute"><i class="icon-chevron-right"></i> Contribute</a></li>
+          </ul>
+        </div>
+        <div class="span9">
+
+
+
+          <!-- Usage
+          ================================================== -->
+          <section id="usage">
+            <div class="page-header">
+              <h1>Usage</h1>
+            </div>
+            <p class="lead">jQuery Burn is a plugin which adds a flame-like effect to text using multiple text-shadows, animated by repeatedly changing their horizontal offsets. 
+            <p>The effect can be somewhat CPU intenssive (especially for older computers), so use it sparingly.</p>
+            <div class="row-fluid">
+              <div class="span6">
+                <h2>Download compiled</h2>
+                <p><strong>Fastest way to get started:</strong> get the minified versions of the JS. No stylesheets or images required.</p>
+                <p><a class="btn btn-large btn-primary" href="https://raw.github.com/Sinetheta/burn/master/jquery.burn.min.js" onclick="_gaq.push(['_trackEvent', 'Getting started', 'Download', 'Download compiled']);">Download Plugin</a></p>
+              </div>
+              <div class="span6">
+                <h2>Visit gitHub</h2>
+                <p>See the unminified source and the project history.</p>
+                <p><a class="btn btn-large" href="https://github.com/twitter/bootstrap/zipball/master" onclick="_gaq.push(['_trackEvent', 'Getting started', 'Download', 'Download source']);">Project gitHib</a></p>
+              </div>
+            </div>
+            <div class="burn-example">
+              <ul class="nav nav-tabs" id="example-tabs">
+                <li class="active"><a href="#html" data-toggle="tab">HTML</a></li>
+                <li><a href="#css" data-toggle="tab">CSS</a></li>
+                <li><a href="#js" data-toggle="tab">JS</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                      <li><a href="#example1" data-toggle="tab">Default</a></li>
+                      <li><a href="#example2" data-toggle="tab">Copper Chloride</a></li>
+                      <li><a href="#example3" data-toggle="tab">Snaking Text</a></li>
+                    </ul>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="html">
+<pre class="prettyprint lang-html">
+&lt;h1 class=&quot;burning&quot;&gt;I&#039;m on fire!&lt;/h1&gt;
+</pre>
+                </div>
+                <div class="tab-pane" id="css">
+<pre class="prettyprint lang-css">
+.burning{
+  color: white;         /* A light text makes a nice bright flame source */
+  background: black;    /* A dark background gives some contrast */
+  letter-spacing: 3em;  /* Big text shows off the effect best */  
+  font-weight: bold;
+}
+</pre>
+                </div>
+                <div class="tab-pane" id="js">
+<pre class="prettyprint lang-js linenums">
+$(document).ready(function() {
+    $('.burning').burn();
+});
+</pre>
+                </div>
+                <div class="tab-pane" id="example1">
+                  <p id="burn-demo-holder1" class="burn-holder burn-demo-holder"><span class="burn-demo" class="">I'm on fire!</span></p>
+                </div>
+                <div class="tab-pane" id="example2">
+                  <p id="burn-demo-holder2" class="burn-holder burn-demo-holder"><span class="burn-demo">I'm on space-fire!</span></p>
+                  <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                      <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+                          Custom settings
+                        </a>
+                      </div>
+                      <div id="collapseOne" class="accordion-body collapse">
+                        <div class="accordion-inner">
+<pre class="prettyprint lang-js linenums">
+$(document).ready(function() {
+    $('.burning').burn({
+        flames : [{
+                  x: 0,
+                  hsla: [300, 100, 80, .1],
+                  y: 0,
+                  blur: .1
+              },
+              {
+                  x: 0,
+                  hsla: [290, 100, 80, .8],
+                  y: .02,
+                  blur: .15
+              },
+              {
+                  x: 0,
+                  hsla: [280, 100, 80, .7],
+                  y: .05,
+                  blur: .2
+              },
+              {
+                  x: 0,
+                  hsla: [260, 100, 80, .6],
+                  y: .1,
+                  blur: .25
+              },
+              {
+                  x: 0,
+                  hsla: [240, 100, 80, .5],
+                  y: .15,
+                  blur: .3
+              },
+              {
+                  x: 0,
+                  hsla: [220, 100, 80, .4],
+                  y: .25,
+                  blur: .4
+              },
+              {
+                  x: 0,
+                  hsla: [200, 100, 80, .3],
+                  y: .5,
+                  blur: .5
+          }]
+      });
+});
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="example3">
+                  <p id="burn-demo-holder2" class="burn-holder burn-demo-holder"><span class="burn-demo">I am le tired!</span></p>
+                  <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                      <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                          Custom settings
+                        </a>
+                      </div>
+                      <div id="collapseTwo" class="accordion-body collapse">
+                        <div class="accordion-inner">
+<pre class="prettyprint lang-js linenums">
+$(document).ready(function() {
+  $('.burning').burn({
+      a : 1,
+      k : 5,
+      w : 5,
+      wind: 0,
+      flames : [{
+            x: 0,
+            hsla: [0, 0, 0, .4],
+            y: -.1,
+            blur: 0
+        },
+        {
+            x: 0,
+            hsla: [0, 0, 0, .35],
+            y: -.2,
+            blur: 0
+        },
+        {
+            x: 0,
+            hsla: [0, 0, 0, .3],
+            y: -.3,
+            blur: 0
+        },
+        {
+            x: 0,
+            hsla: [0, 0, 0, .25],
+            y: -.35,
+            blur: 0
+        },
+        {
+            x: 0,
+            hsla: [0, 0, 0, .2],
+            y: -.4,
+            blur: 0
+        },
+        {
+            x: 0,
+            hsla: [0, 0, 0, .15],
+            y: -.45,
+            blur: 0
+        },
+        {
+            x: 0,
+            hsla: [0, 0, 0, .1],
+            y: -.5,
+            blur: 0
+    }]
+  });
+});
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end .tab-content -->
+            </div>        
+
+            <h2>Automatic Scaling</h2>
+            <p>Since jQuery burn uses <code>em</code>s to generate the shadows, it will scale appropriately as long as <code>em</code>s are used to size the target text.</p>
+            <p class="burn-holder"><span class="burning text-xlarge">B</span> <span class="burning text-large">B</span> <span class="burning text-medium">B</span> <span class="burning">B</span></p>
+          </section>
+
+
+
+          <!-- Documentation
+          ================================================== -->
+          <section id="documentation">
+            <div class="page-header">
+              <h1>Documentation</h1>
+            </div>
+
+          </section>
+
+
+
+          <!-- Advanced Usage
+          ================================================== -->
+          <section id="advanced-usage">
+            <div class="page-header">
+              <h1>Advanced Usage</h1>
+            </div>
+
+          </section>
+
+
+
+          <!-- Wave Equation
+          ================================================== -->
+          <section id="wave-equation">
+            <div class="page-header">
+              <h1>Wave Equation</h1>
+            </div>
+
+          </section>
+
+
+
+          <!-- Contribute
+          ================================================== -->
+          <section id="contribute">
+            <div class="page-header">
+              <h1>Contribute</h1>
+            </div>
+
+          </section>
+        </div><!-- end .span9 -->
+      </div><!-- end .row -->
+    </div><!-- end .container -->
+
+    <!-- Page Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>jQuery Burn was built using the <a href="http://www.websanova.com/tutorials/jquery/jquery-plugin-development-boilerplate">Websanova jQuery Plugin Boilerplate</a>.</p>
+        <p>This website was built on the beautiful <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap v2.1.1</a></p>
+        <p>All code is dual licensed under the <a href="https://github.com/Sinetheta/burn/blob/master/LICENSE-GPL">GPL</a> and <a href="https://github.com/Sinetheta/burn/blob/master/LICENSE-MIT">MIT</a> licenses. Do I have any idea what that means? No, but it seems to be what the cool kids have done with their <a href="https://github.com/cowboy/jquery-bbq">jQuery plugins</a> so I'm hoping it works out.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Sinetheta/burn/issues?state=open">Submit issues</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Scripts
+    ================================================== -->
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script>
+    if(typeof jQuery === 'undefined'){
+      document.write(unescape("%3Cscript%20src%3D%27assets/jquery/jquery.js%27%3E%3C/script%3E"));
+    }
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/google-code-prettify/prettify.min.js"></script>
+    <script src="js/jquery.burn.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
