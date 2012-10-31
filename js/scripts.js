@@ -119,5 +119,202 @@
 			    }]
 			});
 		});
+		
+		var axisColor = "rgb(128, 128, 128)";
+		var a = 1;
+		var k = 5;
+		var w = .005;
+		var wind = 1;
+		var dt = 100;
+		var tSteps = 100;
+
+		function showAxes(ctx, axes) {
+			var w = ctx.canvas.width;
+			var h = ctx.canvas.height;
+
+			ctx.beginPath();
+			ctx.strokeStyle = axisColor;
+			// X axis
+			ctx.moveTo(0, axes.t0);
+			ctx.lineTo(w, axes.t0);
+			// Y axis
+			ctx.moveTo(axes.s0, 0);
+			ctx.lineTo(axes.s0, h);
+			ctx.stroke();
+		}
+
+		function animateWave(canvas, timer) {
+			var fy = function(x, t){
+				return a*Math.sin(k*x - w*t);  
+			};
+			var ctx = canvas.getContext("2d");
+			// pixels from x=0 to x=1
+			var scaleX = 100;
+			var scaleY = 100;
+			var t = 0;
+			var dt = 100;
+			var axes = {
+				s0: .5*canvas.width,
+				// t0 pixels from top to y=0
+				t0: .5*canvas.height
+			};
+			var xs = function(s){
+				return (s - axes.s0)/scaleX;  
+			};
+			var yt = function(t){
+				return (axes.t0 - t)/scaleY;  
+			};
+			var sx = function(x){
+				return x*scaleX + axes.s0;  
+			};
+			var ty = function(y){
+				return axes.t0 - y*scaleY; 
+			};
+			var ds = canvas.width/tSteps;
+			var dx = xs(ds) - xs(0);
+
+			function wave(t) {
+				var i = 0;
+				var x = xs(0);
+				var y = fy(x, t);
+
+				ctx.beginPath();
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = "rgb(255, 0, 0)";
+				ctx.moveTo(sx(x), ty(y))
+
+				while (i < tSteps){
+					x += dx;
+					y = fy(x, t);
+					ctx.lineTo(sx(x), ty(y));
+					i++;
+				}
+				ctx.stroke();
+			}
+
+			// draw function under axes
+			ctx.globalCompositeOperation = 'destination-over';
+
+			// Draw a single frame on page load
+			// clear canvas
+			ctx.clearRect(0, 0, 400, 200); 
+			showAxes(ctx, axes);
+			wave(t);
+
+			if(timer===false) return null;
+
+			// Turn off animation
+			if(timer) return clearInterval(timer);
+
+			// TODO: use requestAnimationFrame to turn this over to setTimeout
+			return setInterval(function(){	
+				t += dt;			
+				ctx.clearRect(0, 0, 400, 200);
+				showAxes(ctx, axes);
+				wave(t);	
+			}, dt);
+		}
+
+		function animateFlame(canvas, timer) {
+			var fx = function(y, t, intensity){
+				return intensity*a*Math.sin(k*y - w*t);  
+			};
+			var ctx = canvas.getContext("2d");
+			// pixels from x=0 to x=1
+			var scaleX = 100;
+			var scaleY = 100;
+			var t = 0;
+			var dt = 100;
+			var axes = {
+				s0: 0,
+				// t0 pixels from top to y=0
+				t0: canvas.height
+			};
+			var xs = function(s){
+				return (s - axes.s0)/scaleX;  
+			};
+			var yt = function(t){
+				return (axes.t0 - t)/scaleY;  
+			};
+			var sx = function(x){
+				return x*scaleX + axes.s0;  
+			};
+			var ty = function(y){
+				return axes.t0 - y*scaleY; 
+			};
+			var ds = canvas.height/tSteps;
+			var dy = yt(0) - yt(ds);
+			var intensity = 1;
+
+
+			function flame(t, intensity) {
+				var i = 0;
+				var y = yt(canvas.height);
+				var x = y*(fx(y, t, intensity) + wind);
+
+				ctx.beginPath();
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = "rgb(255, 0, 0)";
+				ctx.moveTo(sx(x), ty(y))
+
+				while (i < tSteps){
+					y += dy;
+					x = y*(fx(y, t, intensity) + wind);
+					ctx.lineTo(sx(x), ty(y));
+					i++;
+				}
+				ctx.stroke();
+			}
+
+			// draw function under axes
+			ctx.globalCompositeOperation = 'destination-over';
+
+			// Draw a single frame on page load
+			// clear canvas
+			ctx.clearRect(0, 0, 400, 200); 
+			showAxes(ctx, axes);
+			flame(t, intensity);
+
+			if(timer===false) return null;
+
+			// Turn off animation
+			if(timer) return clearInterval(timer);
+
+			// TODO: use requestAnimationFrame to turn this over to setTimeout
+			return setInterval(function(){	
+				t += dt;
+				intensity = Math.sqrt(Math.random());
+				ctx.clearRect(0, 0, 400, 200);
+				showAxes(ctx, axes);
+				flame(t, intensity);	
+			}, dt);
+		}
+
+		$('#plot-wave').on({
+			start: function(){
+				$(this).data('timer', animateWave(this));
+			},
+			stop: function(){
+				animateWave(this, $(this).data('timer'));
+			}
+		});
+		$('#plot-flame').on({
+			start: function(){
+				$(this).data('timer', animateFlame(this));
+			},
+			stop: function(){
+				animateFlame(this, $(this).data('timer'));
+			}
+		});
+		animateWave($('#plot-wave')[0], false);
+		animateFlame($('#plot-flame')[0], false);
+
+		$('.btn-canvas-toggle').click(function(){
+			var button = $(this);
+			var canvas = $('#' + button.data('control'));
+			var isOn = button.hasClass('active');
+
+			canvas.trigger(isOn? 'stop': 'start');
+		});
 	});
 }(jQuery));

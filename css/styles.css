@@ -1,3 +1,9 @@
+/* General styles
+-------------------------------------------------- */
+code{
+  display: inline-block;
+}
+
 /* Sections
 -------------------------------------------------- */
 /* padding for in-page bookmarks and fixed navbar */
@@ -238,4 +244,9 @@ hr.soften {
 }
 #example3 .burn-demo{
   color: black;
+}
+
+/* Canvas demos
+-------------------------------------------------- */
+#plot-wave{
 }

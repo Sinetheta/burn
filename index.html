@@ -51,17 +51,17 @@
               <h1>Usage</h1>
             </div>
             <p class="lead">jQuery Burn is a plugin which adds a flame-like effect to text using multiple text-shadows, animated by repeatedly changing their horizontal offsets. 
-            <p>The effect can be somewhat CPU intenssive (especially for older computers), so use it sparingly.</p>
+            <p>The effect can be somewhat CPU intenssive (especially for older computers), so use it sparingly. It can be stopped and restarted dynamically, colored, stretched, moved, sped up and slowed down. The flame motion is simulated with a simple wave equation solution.</p>
             <div class="row-fluid">
               <div class="span6">
                 <h2>Download compiled</h2>
                 <p><strong>Fastest way to get started:</strong> get the minified versions of the JS. No stylesheets or images required.</p>
-                <p><a class="btn btn-large btn-primary" href="https://raw.github.com/Sinetheta/burn/master/jquery.burn.min.js" onclick="_gaq.push(['_trackEvent', 'Getting started', 'Download', 'Download compiled']);">Download Plugin</a></p>
+                <p><a class="btn btn-large btn-primary" href="https://raw.github.com/Sinetheta/burn/master/jquery.burn.min.js">Download Plugin</a></p>
               </div>
               <div class="span6">
                 <h2>Visit gitHub</h2>
                 <p>See the unminified source and the project history.</p>
-                <p><a class="btn btn-large" href="https://github.com/Sinetheta/burn" onclick="_gaq.push(['_trackEvent', 'Getting started', 'Download', 'Download source']);">Project gitHib</a></p>
+                <p><a class="btn btn-large" href="https://github.com/Sinetheta/burn">Project gitHib</a></p>
               </div>
             </div>
             <div class="burn-example">
@@ -273,7 +273,21 @@ $(document).ready(function() {
             <div class="page-header">
               <h1>Wave Equation</h1>
             </div>
-
+            <p class="lead">jQuery Burn simulates the movement of a flame as simple harmonic motion.</p>
+            <p>It uses a <a href="http://www.animations.physics.unsw.edu.au/jw/travelling_sine_wave.htm#equation">traveling wave equation</a> <code>y(x,t) = Asin(kx - ωt)</code> with a small random componant to give some unpredictability. By scaling the horizontal motion with the distance of a shadow's vertial offset we are able to create a "flag-like" waving motion.</p>
+            <div class="row-fluid">
+              <div class="span6">
+                <h2>Traveling sine wave</h2>
+                <canvas id="plot-wave" class="plot-demo" height="200" width="400" ></canvas>
+                <p><button type="button" class="btn btn-primary btn-canvas-toggle" data-toggle="button" data-control="plot-wave">Animate</button></p>
+              </div>
+              <div class="span6">
+                <h2>Flame "spine" motion</h2>
+                <canvas id="plot-flame" class="plot-demo" height="200" width="400" ></canvas>
+                <p><button type="button" class="btn btn-primary btn-canvas-toggle" data-toggle="button" data-control="plot-flame">Animate</button></p>
+              </div>
+            </div>
+            <p>This simulation is very simplistic. It would be interesting to add variations in intensity, perhaps coupling changes in flame size with height and shifts to hotter colours. It is also rather processsor intenssive, perhaps use of css transitions between fewer flamae "states" would reduce the frequency with which we interact with the page to create the illusion of fluid movement.</p>
           </section>
 
 
