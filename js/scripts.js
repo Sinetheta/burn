@@ -1,6 +1,10 @@
+var O = {
+	a : 1,
+	k : 5,
+	w : .005
+};
 (function(){
 	$(function() {
-
 	    $('.burning').burn();
 
 	    // google-code-prettify
@@ -121,12 +125,9 @@
 		});
 		
 		var axisColor = "rgb(128, 128, 128)";
-		var a = 1;
-		var k = 5;
-		var w = .005;
 		var wind = 1;
-		var dt = 100;
 		var tSteps = 100;
+		var dt = 100;
 
 		function showAxes(ctx, axes) {
 			var w = ctx.canvas.width;
@@ -145,14 +146,13 @@
 
 		function animateWave(canvas, timer) {
 			var fy = function(x, t){
-				return a*Math.sin(k*x - w*t);  
+				return O.a*Math.sin(O.k*x - O.w*t);  
 			};
 			var ctx = canvas.getContext("2d");
 			// pixels from x=0 to x=1
-			var scaleX = 100;
-			var scaleY = 100;
+			var scaleX = .5*canvas.width;
+			var scaleY = .3*canvas.height;
 			var t = 0;
-			var dt = 100;
 			var axes = {
 				s0: .5*canvas.width,
 				// t0 pixels from top to y=0
@@ -217,14 +217,13 @@
 
 		function animateFlame(canvas, timer) {
 			var fx = function(y, t, intensity){
-				return intensity*a*Math.sin(k*y - w*t);  
+				return intensity*O.a*Math.sin(O.k*y - O.w*t);  
 			};
 			var ctx = canvas.getContext("2d");
 			// pixels from x=0 to x=1
 			var scaleX = 100;
 			var scaleY = 100;
 			var t = 0;
-			var dt = 100;
 			var axes = {
 				s0: 0,
 				// t0 pixels from top to y=0
@@ -316,5 +315,29 @@
 
 			canvas.trigger(isOn? 'stop': 'start');
 		});
+
+		$('.plot-control').knob({
+        	release: function (val){
+        		var options = {};
+
+        		$.each($('.plot-control'), function(){
+        			options[$(this).data('control')] = $(this).val()/$(this).data('scale');
+        		});
+        		O = options;
+        	}
+        });
+
+		// advanced usage
+		$('#demo-toggle-switch').click(function(){
+			var isOn = $(this).hasClass('active');
+
+			$('#demo-toggle').burn(isOn? false: null)
+				.toggleClass('burning');
+		});
+	    $('#demo-toggle-amplitude').knob({
+        	change : function (val){
+        		$('#demo-toggle').burn('diffusion', val/35);
+        	}
+        });
 	});
 }(jQuery));

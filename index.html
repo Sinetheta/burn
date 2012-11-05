@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
     <title>jQuery Burn</title>
+
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A jquery plugin to add a burning effect to text">
     <meta name="author" content="Kevin Attfield">
@@ -13,9 +14,7 @@
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="assets/google-code-prettify/prettify.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-
   </head>
-
   <body>
 
     <!-- Page Header
@@ -34,15 +33,13 @@
         <div class="span3 left-sidebar">
           <ul class="nav nav-list left-sidenav span3" data-spy="affix" data-offset-top="220">
             <li><a href="#usage"><i class="icon-chevron-right"></i> Usage</a></li>
+            <li><a href="#scaling"><i class="icon-chevron-right"></i> Automatic Scaling</a></li>
             <li><a href="#documentation"><i class="icon-chevron-right"></i> Documentation</a></li>
             <li><a href="#advanced-usage"><i class="icon-chevron-right"></i> Advanced Usage</a></li>
             <li><a href="#wave-equation"><i class="icon-chevron-right"></i> Wave Equation</a></li>
-            <li><a href="#contribute"><i class="icon-chevron-right"></i> Contribute</a></li>
           </ul>
         </div>
         <div class="span9">
-
-
 
           <!-- Usage
           ================================================== -->
@@ -50,20 +47,31 @@
             <div class="page-header">
               <h1>Usage</h1>
             </div>
-            <p class="lead">jQuery Burn is a plugin which adds a flame-like effect to text using multiple text-shadows, animated by repeatedly changing their horizontal offsets. 
-            <p>The effect can be somewhat CPU intenssive (especially for older computers), so use it sparingly. It can be stopped and restarted dynamically, colored, stretched, moved, sped up and slowed down. The flame motion is simulated with a simple wave equation solution.</p>
+
+            <p class="lead">jQuery Burn is a plugin which adds a flame-like effect to text using multiple <a href="http://css-tricks.com/snippets/css/css-text-shadow/">text-shadows</a>, animated by repeatedly changing their horizontal offsets.</p>
+            <p>The effect can be somewhat CPU intensive (especially for older computers), so use it sparingly. It can be stopped and restarted dynamically, colored, stretched, offset, sped up and slowed down. The flame motion is simulated with a simple <a href="#wave-equation">wave equation</a> solution.</p>
             <div class="row-fluid">
               <div class="span6">
-                <h2>Download compiled</h2>
-                <p><strong>Fastest way to get started:</strong> get the minified versions of the JS. No stylesheets or images required.</p>
+                <h2>Download</h2>
+
+                <p><strong>Fastest way to get started:</strong> get the minified versions of the JS. No style sheets or images required.</p>
                 <p><a class="btn btn-large btn-primary" href="https://raw.github.com/Sinetheta/burn/master/jquery.burn.min.js">Download Plugin</a></p>
               </div>
               <div class="span6">
                 <h2>Visit gitHub</h2>
+
                 <p>See the unminified source and the project history.</p>
                 <p><a class="btn btn-large" href="https://github.com/Sinetheta/burn">Project gitHib</a></p>
               </div>
             </div>
+            <h2>Include jQuery and jRumble</h2>
+            <p>Include jQuery and jQuery Burn just before your closing body tag. Make sure the paths to your files are correct. I recommend including via Google Libraries API.</p>
+<pre class="prettyprint lang-html">
+&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/jquery.burn.js&quot;&gt;&lt;/script&gt;
+</pre>
+            <h2>Initialize jQuery Burn on a Selector</h2>
+            <p>You can do this in a script tag within your HTML or in an external JavaScript file.</p>
             <div class="burn-example">
               <ul class="nav nav-tabs" id="example-tabs">
                 <li class="active"><a href="#html" data-toggle="tab">HTML</a></li>
@@ -101,10 +109,10 @@ $(document).ready(function() {
 </pre>
                 </div>
                 <div class="tab-pane" id="example1">
-                  <p id="burn-demo-holder1" class="burn-holder burn-demo-holder"><span class="burn-demo" class="">I'm on fire!</span></p>
+                  <p id="burn-holder1" class="burn-holder"><span class="burn-demo" class="">I'm on fire!</span></p>
                 </div>
                 <div class="tab-pane" id="example2">
-                  <p id="burn-demo-holder2" class="burn-holder burn-demo-holder"><span class="burn-demo">I'm on space-fire!</span></p>
+                  <p id="burn-demo-holder2" class="burn-holder"><span class="burn-demo">I'm on space-fire!</span></p>
                   <div class="accordion" id="accordion1">
                     <div class="accordion-group">
                       <div class="accordion-heading">
@@ -168,7 +176,7 @@ $(document).ready(function() {
                   </div>
                 </div>
                 <div class="tab-pane" id="example3">
-                  <p id="burn-demo-holder2" class="burn-holder burn-demo-holder"><span class="burn-demo">I am le tired!</span></p>
+                  <p id="burn-demo-holder3" class="burn-holder"><span class="burn-demo">I am le tired!</span></p>
                   <div class="accordion" id="accordion2">
                     <div class="accordion-group">
                       <div class="accordion-heading">
@@ -236,14 +244,33 @@ $(document).ready(function() {
                   </div>
                 </div>
               </div><!-- end .tab-content -->
-            </div>        
-
-            <h2>Automatic Scaling</h2>
-            <p>Since jQuery burn uses <code>em</code>s to generate the shadows, it will scale appropriately as long as <code>em</code>s are used to size the target text.</p>
-            <p class="burn-holder"><span class="burning text-xlarge">B</span> <span class="burning text-large">B</span> <span class="burning text-medium">B</span> <span class="burning">B</span></p>
+            </div>
           </section>
 
 
+          <!-- Automatic Scaling
+          ================================================== -->
+          <section id="scaling">
+            <div class="page-header">
+              <h1>Automatic Scaling</h1>
+            </div>
+            <p class="lead">jQuery burn will scale appropriately to size the target text, however you must target the text itself.</p>
+            <div class="row-fluid">
+              <div class="span6">
+                <h2>Target text</h2>
+                
+                <p class="burn-holder"><span class="burning text-xxlarge">S</span> <span class="burning text-xlarge">C</span> <span class="burning text-large">A</span> <span class="burning text-medium">L</span> <span class="burning">E</span></p>
+                 <p>The best target is the element responsible for the text's font-size. In this case, the <code>&lt;span&gt;</code> surrounding each individual letter</p>
+              </div>
+              <div class="span6">
+                <h2>Target container</h2>
+
+                <p class="burn-holder burning"><span class="text-xxlarge">S</span> <span class="text-xlarge">C</span> <span class="text-large">A</span> <span class="text-medium">L</span> E</p>
+                <p>If you target a container then all descendant elements will inherit the same sized text shadow.</p>
+              </div>
+            </div>
+            <p>Typically this shouldn't be a problem, as the jquery burn effect is best used sparingly.</p>
+          </section>
 
           <!-- Documentation
           ================================================== -->
@@ -251,10 +278,84 @@ $(document).ready(function() {
             <div class="page-header">
               <h1>Documentation</h1>
             </div>
-
+            <table class="table table-bordered table-striped">
+              <caption>Options</caption>
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>a</td>
+                  <td>0.3</td>
+                  <td>Amplitude of wave motion. A larger value leads to more pronounced oscillation.</td>
+                </tr>
+                <tr>
+                  <td>k</td>
+                  <td>0.05</td>
+                  <td>Wave Number. A larger value leads to more oscillations per unit length, or a more wrinkled flame.</td>
+                </tr>
+                <tr>
+                  <td>w</td>
+                  <td>10</td>
+                  <td>Angular Frequency. A larger value leads to quicker oscillations, or a higher frequency.</td>
+                </tr>
+                <tr>
+                  <td>wind</td>
+                  <td>1</td>
+                  <td>Skew. A negative value for "wind" would make a vertical flame lean to the left. A value of 0 would make it perfectly vertical. A positive value makes it lean to the right. The larger the value, the greater the lean.</td>
+                </tr>
+                <tr>
+                <tr>
+                  <td>diffusion</td>
+                  <td>1</td>
+                  <td>A scale factor for both horizontal and vertical offset as well as shadow blur. A larger number leads to a flame which appears larger, though less intense.</td>
+                </tr>
+                  <td>interval</td>
+                  <td>100</td>
+                  <td>Animation interval in milliseconds <a href="#request-animation-frame">†</a>. A larger value would lead to choppier animation, but demand less performance from a visitor's computer.</td>
+                </tr>
+                <tr>
+                  <td>flames</td>
+                  <td>array</td>
+                  <td>Array of shadows. The option "flames" can be set to a custom array, each element of which must be an object with strict properties as defined below. This allows for complete customisation of the effect. See <a href="#advanced-usage">advanced usage</a> for more details.</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered table-striped">
+              <caption>Flame Object</caption>
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>x</td>
+                <td>0</td>
+                <td>Start displacement. This value has little long term impact and is best left as 0. It represents the initial horizontal offset of a particular flame and as is used internally to store the position of that flame.</td>
+              </tr>
+              <tr>
+                <td>hsla</td>
+                <td>[58, 96, 89, 1]</td>
+                <td>Colour of the shadow in <a href="http://css-tricks.com/yay-for-hsla/">HSLA</a>.</td>
+              </tr>
+              <tr>
+                <td>y</td>
+                <td>0</td>
+                <td>Height vertical offset in em. It is best to pair increasing values of <code>y</code> with "<a href="http://en.wikipedia.org/wiki/Color_temperature">hotter</a>" colours.</td>
+              </tr>
+              <tr>
+                <td>blur</td>
+                <td>0.1</td>
+                <td>Size/clarity of the shadow. Larger value leads to a bigger and less sharply defined shadow.</td>
+              </tr>
+            </table>
           </section>
-
-
 
           <!-- Advanced Usage
           ================================================== -->
@@ -262,10 +363,30 @@ $(document).ready(function() {
             <div class="page-header">
               <h1>Advanced Usage</h1>
             </div>
-
+            <p class="lead">Aside from initialising jQuery Burn with custom options, any parameter can be altered dynamically.</p>
+            <h2>Stop and Start</h2>
+            <p>The flame effect on an element can be "turned off" using the <code>off</code> method. To invoke this method, call jQuery burn on the target object and pass it the boolean <code>false</code> as follows <code class="prettyprint lang-js">$(target).burn(false);</code>.</p>
+            <div class="row-fluid">
+              <div class="span6">
+                <h3>Toggle demo</h3>
+                <p id="demo-toggle" class="burn-holder text-large">Start me up!</p>
+                <button id="demo-toggle-switch" type="button" class="btn" data-toggle="button">Ignite</button>
+              </div>
+              <div class="span6 knob-holder">
+                <h3>Intensity control</h3>
+                <input id="demo-toggle-amplitude" class="knob" data-angleoffset="-125" data-anglearc="250" data-min="0" data-fgColor="e5b659" data-max="100" value="35" />
+              </div>
+            </div>
+            <p>To get or set a particular option, simply pass it by name as a string to the plugin invocation. Alternatively, any number of options can be changed simultaneously by passing an options hash.</p>
+<pre class="prettyprint lang-js">
+$(target).burn('wind'); // returns 1
+$(target).burn('diffusion', 2); // doubles the flame size
+$(target).burn({
+  k: 10,
+  w: 10
+}); // waves half as long and twice as fast
+</pre>
           </section>
-
-
 
           <!-- Wave Equation
           ================================================== -->
@@ -274,32 +395,36 @@ $(document).ready(function() {
               <h1>Wave Equation</h1>
             </div>
             <p class="lead">jQuery Burn simulates the movement of a flame as simple harmonic motion.</p>
-            <p>It uses a <a href="http://www.animations.physics.unsw.edu.au/jw/travelling_sine_wave.htm#equation">traveling wave equation</a> <code>y(x,t) = Asin(kx - ωt)</code> with a small random componant to give some unpredictability. By scaling the horizontal motion with the distance of a shadow's vertial offset we are able to create a "flag-like" waving motion.</p>
+            <p>It uses a <a href="http://www.animations.physics.unsw.edu.au/jw/travelling_sine_wave.htm#equation">traveling wave equation</a> <code>y(x,t) = Asin(kx - ωt)</code> with a small random component to give some unpredictability. By scaling the horizontal motion with the distance of a shadow's vertical offset we are able to create a "flag-like" waving motion.</p>
             <div class="row-fluid">
               <div class="span6">
                 <h2>Traveling sine wave</h2>
-                <canvas id="plot-wave" class="plot-demo" height="200" width="400" ></canvas>
+                <canvas id="plot-wave" class="plot-demo"></canvas>
                 <p><button type="button" class="btn btn-primary btn-canvas-toggle" data-toggle="button" data-control="plot-wave">Animate</button></p>
               </div>
               <div class="span6">
                 <h2>Flame "spine" motion</h2>
-                <canvas id="plot-flame" class="plot-demo" height="200" width="400" ></canvas>
+                <canvas id="plot-flame" class="plot-demo"></canvas>
                 <p><button type="button" class="btn btn-primary btn-canvas-toggle" data-toggle="button" data-control="plot-flame">Animate</button></p>
               </div>
             </div>
-            <p>This simulation is very simplistic. It would be interesting to add variations in intensity, perhaps coupling changes in flame size with height and shifts to hotter colours. It is also rather processsor intenssive, perhaps use of css transitions between fewer flamae "states" would reduce the frequency with which we interact with the page to create the illusion of fluid movement.</p>
-          </section>
-
-
-
-          <!-- Contribute
-          ================================================== -->
-          <section id="contribute">
-            <div class="page-header">
-              <h1>Contribute</h1>
+            <div class="row-fluid">
+              <div class="span4 knob-holder">
+                <h3>Amplitude</h3>
+                <input class="knob plot-control" data-control="a" data-scale="50" data-angleoffset="-125" data-anglearc="250" data-min="0" data-max="100" value="50" />
+              </div>
+              <div class="span4 knob-holder">
+                <h3>Wave Number</h3>
+                <input class="knob plot-control" data-control="k" data-scale="10" data-angleoffset="-125" data-anglearc="250" data-min="0" data-max="100" value="50" />
+              </div>
+              <div class="span4 knob-holder">
+                <h3>Frequency</h3>
+                <input class="knob plot-control" data-control="w" data-scale="10000" data-angleoffset="-125" data-anglearc="250" data-min="0" data-max="100" value="50" />
+              </div>
             </div>
-
+            <p>This simulation is very simplistic. It would be interesting to add variations in intensity, perhaps coupling changes in flame size with height and shifts to hotter colours. It is also rather processor intensive, perhaps use of css transitions between fewer flame "states" would reduce the frequency with which we interact with the page to create the illusion of fluid movement.</p>
           </section>
+
         </div><!-- end .span9 -->
       </div><!-- end .row -->
     </div><!-- end .container -->
@@ -309,8 +434,9 @@ $(document).ready(function() {
     <footer class="footer">
       <div class="container">
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>jQuery Burn was built using the <a href="http://www.websanova.com/tutorials/jquery/jquery-plugin-development-boilerplate">Websanova jQuery Plugin Boilerplate</a>.</p>
-        <p>This website was built on the beautiful <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap v2.1.1</a></p>
+        <p>jQuery Burn was created using the <a href="http://www.websanova.com/tutorials/jquery/jquery-plugin-development-boilerplate">Websanova jQuery Plugin Boilerplate</a>.</p>
+        <p>This website is built on the beautiful <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap v2.2.1</a></p>
+        <p>Thanks to <a href="http://css-tricks.com/">CSS-Tricks</a> and Chris Coyier for always having a clear, concise, and thorough blog post at the top of my Google searches for reference material.</p>
         <p>All code is dual licensed under the <a href="https://github.com/Sinetheta/burn/blob/master/LICENSE-GPL">GPL</a> and <a href="https://github.com/Sinetheta/burn/blob/master/LICENSE-MIT">MIT</a> licenses. Do I have any idea what that means? No, but it seems to be what the cool kids have done with their <a href="https://github.com/cowboy/jquery-bbq">jQuery plugins</a> so I'm hoping it works out.</p>
         <ul class="footer-links">
           <li><a href="https://github.com/Sinetheta/burn/issues?state=open">Submit issues</a></li>
@@ -320,7 +446,7 @@ $(document).ready(function() {
 
     <!-- Scripts
     ================================================== -->
-    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script>
     if(typeof jQuery === 'undefined'){
       document.write(unescape("%3Cscript%20src%3D%27assets/jquery/jquery.js%27%3E%3C/script%3E"));
@@ -329,6 +455,7 @@ $(document).ready(function() {
     <script src="js/bootstrap.min.js"></script>
     <script src="assets/google-code-prettify/prettify.min.js"></script>
     <script src="js/jquery.burn.min.js"></script>
+    <script src="js/jquery.knob.js"></script>
     <script src="js/scripts.js"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
