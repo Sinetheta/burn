@@ -56,12 +56,12 @@ To get a single option, set a single option, or set multiple options:
             <td>1</td>
             <td>Skew. A negative value for "wind" would make a vertical flame lean to the left. A value of 0 would make it perfectly vertical. A positive value makes it lean to the right. The larger the value, the greater the lean.</td>
         </tr>
-            <tr>
-            <tr>
+        <tr>
             <td>diffusion</td>
             <td>1</td>
             <td>A scale factor for both horizontal and vertical offset as well as shadow blur. A larger number leads to a flame which appears larger, though less intense.</td>
         </tr>
+        <tr>
             <td>interval</td>
             <td>100</td>
             <td>Animation interval in milliseconds <a href="#request-animation-frame">†</a>. A larger value would lead to choppier animation, but demand less performance from a visitor's computer.</td>
