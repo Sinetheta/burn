@@ -6,14 +6,14 @@
  * http://sinetheta.github.com/burn/
  *
  */
-(function($)
-{
+(function($){
     var defaultSettings = {
         a : .3,
         k : .05,
         w : 10,
         wind: 1,
         interval: 100,
+        strength: 1,
         flames : [{
                 x: 0,
                 hsla: [58, 96, 89, 1],
@@ -105,11 +105,12 @@
 
         return this.each(function() {
 
-            $settings = jQuery.extend(true, {}, settings);
+            $settings = $.extend(true, {}, settings);
 
             var burning = new Burning($settings);
 
             burning.elem = $(this);
+
             burning.ignite();
 
             burning.elem.data('_burn', burning);
@@ -156,7 +157,7 @@
                 var rise = -flame.y;
                 var intensity = Math.sqrt(Math.random());
                 flame.x = self.wave(flame.y, self.t, intensity);
-                return (flame.x + op.wind)*flame.y + 'em ' + rise + 'em ' + flame.blur + 'em hsla(' + flame.hsla[0] + ', ' + flame.hsla[1] + '%, ' + flame.hsla[2] + '%, ' + flame.hsla[3] + ')';
+                return (flame.x + op.wind)*flame.y*op.strength + 'em ' + rise*op.strength + 'em ' + flame.blur*op.strength + 'em hsla(' + flame.hsla[0] + ', ' + flame.hsla[1] + '%, ' + flame.hsla[2] + '%, ' + flame.hsla[3] + ')';
             });
 
             self.elem.css('text-shadow', shadow.join(', '));

@@ -1,0 +1,10 @@
+.burn-holder{
+  background: black;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 10px;
+}
+.burning {
+  color: white;
+  font-size: 40px;
+}
