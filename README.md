@@ -62,11 +62,6 @@ To get a single option, set a single option, or set multiple options:
             <td>A scale factor for both horizontal and vertical offset as well as shadow blur. A larger number leads to a flame which appears larger, though less intense.</td>
         </tr>
         <tr>
-            <td>interval</td>
-            <td>100</td>
-            <td>Animation interval in milliseconds <a href="#request-animation-frame">†</a>. A larger value would lead to choppier animation, but demand less performance from a visitor's computer.</td>
-        </tr>
-        <tr>
             <td>flames</td>
             <td>array</td>
             <td>Array of shadows. The option "flames" can be set to a custom array, each element of which must be an object with strict properties as defined below. This allows for complete customisation of the effect. See <a href="#advanced-usage">advanced usage</a> for more details.</td>
