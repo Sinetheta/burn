@@ -33,7 +33,7 @@
         <div class="span3 left-sidebar">
           <ul class="nav nav-list left-sidenav span3" data-spy="affix" data-offset-top="220">
             <li><a href="#usage"><i class="icon-chevron-right"></i> Usage</a></li>
-            <li><a href="#scaling"><i class="icon-chevron-right"></i> Automatic Scaling</a></li>
+            <li><a href="#features"><i class="icon-chevron-right"></i> Features</a></li>
             <li><a href="#documentation"><i class="icon-chevron-right"></i> Documentation</a></li>
             <li><a href="#advanced-usage"><i class="icon-chevron-right"></i> Advanced Usage</a></li>
             <li><a href="#wave-equation"><i class="icon-chevron-right"></i> Wave Equation</a></li>
@@ -247,29 +247,32 @@ $(document).ready(function() {
             </div>
           </section>
 
-
-          <!-- Automatic Scaling
+          <!-- Features
           ================================================== -->
-          <section id="scaling">
+          <section id="features">
             <div class="page-header">
-              <h1>Automatic Scaling</h1>
+              <h1>Features</h1>
             </div>
-            <p class="lead">jQuery burn will scale appropriately to size the target text, however you must target the text itself.</p>
+            <p class="lead">Creating jQuery Burn lead to a lot of firsts for me, so I'd love for it to be learning tool for others.</p>
+            <h2>Smooth animation</h2>
+            <p>jQuery Burn uses <a href="https://developer.mozilla.org/en-US/docs/DOM/window.requestAnimationFrame">requestAnimationFrame</a> to optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. Thanks to Paul Irish for <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">the great introduction</a>. This ensures that animation frames occur as frequently as possible while a page using the effect is visible and also that no animations will be performed if it is not; for instance, if the page is not a user's current active tab.
+            <h2>Automatic scaling</h2>
+            <p>Since jQuery Burn's text shadow use EMs it will scale appropriately to size the target text, however you must target the text itself.</p>
             <div class="row-fluid">
               <div class="span6">
-                <h2>Target text</h2>
+                <h3>Target text</h3>
                 
                 <p class="burn-holder"><span class="burning text-xxlarge">S</span> <span class="burning text-xlarge">C</span> <span class="burning text-large">A</span> <span class="burning text-medium">L</span> <span class="burning">E</span></p>
                  <p>The best target is the element responsible for the text's font-size. In this case, the <code>&lt;span&gt;</code> surrounding each individual letter</p>
               </div>
               <div class="span6">
-                <h2>Target container</h2>
+                <h3>Target container</h3>
 
                 <p class="burn-holder burning"><span class="text-xxlarge">S</span> <span class="text-xlarge">C</span> <span class="text-large">A</span> <span class="text-medium">L</span> E</p>
                 <p>If you target a container then all descendant elements will inherit the same sized text shadow.</p>
               </div>
             </div>
-            <p>Typically this shouldn't be a problem, as the jquery burn effect is best used sparingly.</p>
+            <p>Typically this shouldn't be a problem, as the jquery burn effect is best used sparingly. Also, EMs (or REMs) are always an <a href="http://filamentgroup.com/lab/how_we_learned_to_leave_body_font_size_alone/">ideal choice</a> of unit for all text, and text-effects, on a responsively designed website.</p>
           </section>
 
           <!-- Documentation
@@ -312,10 +315,6 @@ $(document).ready(function() {
                   <td>diffusion</td>
                   <td>1</td>
                   <td>A scale factor for both horizontal and vertical offset as well as shadow blur. A larger number leads to a flame which appears larger, though less intense.</td>
-                </tr>
-                  <td>interval</td>
-                  <td>100</td>
-                  <td>Animation interval in milliseconds <a href="#request-animation-frame">†</a>. A larger value would lead to choppier animation, but demand less performance from a visitor's computer.</td>
                 </tr>
                 <tr>
                   <td>flames</td>
