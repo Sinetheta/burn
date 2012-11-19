@@ -330,8 +330,9 @@ var O = {
 		// advanced usage
 		$('#demo-toggle-switch').click(function(){
 			var isOn = $(this).hasClass('active');
+			var val = $('#demo-toggle-amplitude').val();
 
-			$('#demo-toggle').burn(isOn? false: null)
+			$('#demo-toggle').burn(isOn? false: {diffusion: val/35})
 				.toggleClass('burning');
 		});
 	    $('#demo-toggle-amplitude').knob({
