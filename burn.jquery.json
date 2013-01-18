@@ -1,0 +1,31 @@
+{
+  "name": "burn",
+  "title": "jQuery Burn",
+  "description": "jQuery plugin to apply flame effect to text.",
+  "keywords": [
+    "color",
+    "animation"
+  ],
+  "version": "0.3.1",
+  "author": {
+    "name": "Kevin Attfield",
+      "email": "kevin.attfield@gmail.com",
+      "url": "https://github.com/Sinetheta"
+  },
+  "licenses": [
+    {
+      "type": "GPLv2",
+      "url": "http://www.example.com/licenses/gpl.html"
+    },
+    {
+      "type": "MIT",
+      "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+    }
+  ],
+  "bugs": "https://github.com/Sinetheta/burn/issues",
+  "homepage": "http://sinetheta.github.com/burn/",
+  "docs": "https://github.com/Sinetheta/burn",
+  "dependencies": {
+    "jquery": ">=1.8"
+  }
+}

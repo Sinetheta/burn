@@ -1,5 +1,5 @@
 /*!
- * jQuery Burn - v0.3 - 11/18/2012
+ * jQuery Burn - v0.3.1 - 11/18/2012
  *
  * Copyright (c) 2012 Kevin Attfield
  * Dual licensed under the MIT and GPL licenses.
