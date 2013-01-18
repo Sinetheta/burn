@@ -3,6 +3,8 @@
   "title": "jQuery Burn",
   "description": "jQuery plugin to apply flame effect to text.",
   "keywords": [
+    "text",
+    "effect",
     "color",
     "animation"
   ],
