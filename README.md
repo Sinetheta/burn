@@ -1,26 +1,18 @@
 # jQuery Burn: Text flame effect
 
-[http://sinetheta.github.com/burn/](http://sinetheta.github.com/burn/)
-
-jQuery Burn applies a simple flame effect to text using the css text-shadow property. As such it currently does not work in IE http://caniuse.com/css-textshadow
+> jQuery Burn applies a simple flame effect to text using the css text-shadow property. As such it will [not work in older versions of IE](http://caniuse.com/css-textshadow).
 
 ## Usage
 
-	<script>
-	(function(){
-		$(document).ready(function() {
-			$(target).burn();
-		});
-	})(jQuery);
-	</script>
+To turn on effect `$('.burn').burn();`
 
-To turn off effect `$(target).burn(false);`
+To turn off effect `$('.burn').burn(false);`
 
 To get a single option, set a single option, or set multiple options:
 
-    $(target).burn('wind'); // returns 1
-    $(target).burn('diffusion', 2); // doubles the flame size
-    $(target).burn({
+    $('.burn').burn('wind'); // returns 1
+    $('.burn').burn('diffusion', 2); // doubles the flame size
+    $('.burn').burn({
       k: 10,
       w: 10
     }); // waves half as long and twice as fast
